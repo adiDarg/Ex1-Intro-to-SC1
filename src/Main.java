@@ -10,7 +10,7 @@ public class Main {
             // Message for every calculation available
             userProgramChoice = scanner.nextInt();
             switch (userProgramChoice){
-                case 1 -> {} // calc1
+                case 1 -> areaAndCircumferenceOfCircle(); // calc1
                 case 2 -> {} // calc2
                 case 3 -> {} // calc3
                 case 4 -> {} // calc4
@@ -26,5 +26,13 @@ public class Main {
                 default -> System.out.println("Invalid input. Input 1-12 for a corresponding calculation or input 0 to end the program");
             }
         }
+    }
+    public static void areaAndCircumferenceOfCircle(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input radius of circle");
+        double radius = scanner.nextDouble();
+        double area = radius*radius*3.14;
+        double circumference = radius*2*3.14;
+        System.out.println(area + " is the area of the circle, " + circumference + " is the circumference of the circle");
     }
 }
