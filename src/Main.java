@@ -77,9 +77,11 @@ public class Main {
         double interest = scanner.nextDouble()/100;
         for (int i = 3; i <= 36; i+= 3)
         {
-            balance *= interest * interest * interest;
+            balance *= (interest+1) * (interest+1) * (interest+1);
             double withdrawSum = i%12 == 0? balance: balance/2;
             System.out.println("sum of money to withdraw after " + i + " months is: " + withdrawSum);
+            if (i %12 != 0)
+                System.out.println("sum was halved for not withdrawing after a full year(or multiple full yearsa)");
         }
 
     }
