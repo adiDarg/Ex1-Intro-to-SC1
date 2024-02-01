@@ -81,7 +81,7 @@ public class Main {
             double withdrawSum = i%12 == 0? balance: balance/2;
             System.out.println("sum of money to withdraw after " + i + " months is: " + withdrawSum);
             if (i %12 != 0)
-                System.out.println("sum was halved for not withdrawing after a full year(or multiple full yearsa)");
+                System.out.println("sum was halved for not withdrawing after a full year(or multiple full years)");
         }
 
     }
