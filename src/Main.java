@@ -27,11 +27,11 @@ public class Main {
             userProgramChoice = scanner.nextInt();
             switch (userProgramChoice){
                 case 1 -> areaAndCircumferenceOfCircle();
-                case 2 -> {} // calc2
-                case 3 -> {} // calc3
-                case 4 -> {} // calc4
-                case 5 -> {} // calc5
-                case 6 -> {} // calc6
+                case 2 -> {}
+                case 3 -> {}
+                case 4 -> {}
+                case 5 -> {}
+                case 6 -> {}
                 case 7 -> printAllPrimesInRange();
                 case 8 -> checkGreatestCommonDivisor();
                 case 9 -> quadraticEquationSolver();
