@@ -1,6 +1,4 @@
-import java.lang.ref.Cleaner;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args){
         menu();
@@ -11,9 +9,20 @@ public class Main {
         while (userProgramChoice != 0)
         {
             System.out.println("Choose Calculation:");
-            System.out.println("1: Input radius to get area and circumference of a circle");
-            // Message for every calculation available besides 1
-            System.out.println("0: Exit program");
+            System.out.println("1: Calculates area and circumference of a circle with radius");
+            System.out.println("2: Converts celsius to fahrenheit and fahrenheit to celsius");
+            System.out.println("3: Calculates the factorial of the given number");
+            System.out.println("4: Calculates the sum of natural numbers in given range");
+            System.out.println("5: Checks whether a given number is prime");
+            System.out.println("6: Checks whether a given 5 digit number is a palindrome");
+            System.out.println("7: Prints all prime numbers in a given range");
+            System.out.println("8: Calculates the GCD(greatest common divisor) of two given numbers");
+            System.out.println("9: Calculates results of a given quadratic equation");
+            System.out.println("10: Calculates the compound interest of a given sum of money with a given rate over 3 month periods(until 36 months)");
+            System.out.println("11: Checks whether a given number is part of the fibonacci series");
+            System.out.println("12: Prints the closest narcissist number to a given number");
+            System.out.println("0: Exits program");
+
             userProgramChoice = scanner.nextInt();
             switch (userProgramChoice){
                 case 1 -> areaAndCircumferenceOfCircle();
@@ -41,6 +50,7 @@ public class Main {
         double circumference = radius*2*3.14;
         System.out.println(area + " is the area of the circle, " + circumference + " is the circumference of the circle");
     }
+
     public static void quadraticEquationSolver(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input coefficient of x squared(a)");
@@ -77,11 +87,12 @@ public class Main {
         double interest = scanner.nextDouble()/100;
         for (int i = 3; i <= 36; i+= 3)
         {
-            balance *= (interest+1) * (interest+1) * (interest+1);
+            balance *= (interest+1);
             double withdrawSum = i%12 == 0? balance: balance/2;
             System.out.println("sum of money to withdraw after " + i + " months is: " + withdrawSum);
             if (i %12 != 0)
                 System.out.println("sum was halved for not withdrawing after a full year(or multiple full years)");
+            System.out.println();
         }
 
     }
@@ -111,13 +122,13 @@ public class Main {
         System.out.println("Input a number");
         int number = scanner.nextInt();
         int closestNarcissistAbove = number;
-        int closetNarcissitBelow = number;
-        while (!isNarcissistNumber(closestNarcissistAbove)&& !isNarcissistNumber(closetNarcissitBelow))
+        int closetNarcissistBelow = number;
+        while (!isNarcissistNumber(closestNarcissistAbove)&& !isNarcissistNumber(closetNarcissistBelow))
         {
             closestNarcissistAbove++;
-            closetNarcissitBelow--;
+            closetNarcissistBelow--;
         }
-        int closestNarcissist = isNarcissistNumber(closestNarcissistAbove)? closestNarcissistAbove: closetNarcissitBelow;
+        int closestNarcissist = isNarcissistNumber(closestNarcissistAbove)? closestNarcissistAbove: closetNarcissistBelow;
         System.out.println(closestNarcissist + " is the closest narcissist number to the input(" + number + ")");
     }
     public static boolean isNarcissistNumber(int number){
