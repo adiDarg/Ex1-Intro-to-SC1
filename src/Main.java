@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
@@ -26,12 +25,12 @@ public class Main {
 
             userProgramChoice = scanner.nextInt();
             switch (userProgramChoice){
-                case 1 -> areaAndCircumferenceOfCircle();
-                case 2 -> {}
-                case 3 -> {}
-                case 4 -> {}
-                case 5 -> {}
-                case 6 -> {}
+                case 1 -> calculateAreaAndCircumferenceOfCircle();
+                case 2 -> convertBetweenCelsiusAndFahrenheit();
+                case 3 -> calculateFactorial();
+                case 4 -> calculateSumOfNaturalsInRange();
+                case 5 -> isPrime();
+                case 6 -> isFiveDigitNumberAPalindrome();
                 case 7 -> printAllPrimesInRange();
                 case 8 -> checkGreatestCommonDivisor();
                 case 9 -> quadraticEquationSolver();
@@ -43,13 +42,118 @@ public class Main {
             }
         }
     }
-    public static void areaAndCircumferenceOfCircle(){
+    public static void calculateAreaAndCircumferenceOfCircle(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input radius of circle");
         double radius = scanner.nextDouble();
         double area = radius*radius*3.14;
         double circumference = radius*2*3.14;
         System.out.println(area + " is the area of the circle, " + circumference + " is the circumference of the circle");
+    }
+    public static void convertBetweenCelsiusAndFahrenheit(){
+        Scanner scanner = new Scanner(System.in);
+        char temperatureType;
+        do {
+            System.out.println("Input c to convert from celsius, input f to convert from fahrenheit");
+            temperatureType = scanner.next().charAt(0);
+        } while (temperatureType != 'c' && temperatureType != 'f');
+        System.out.println("Input degrees in chosen temperature type");
+        double originalTemperature = scanner.nextDouble();
+        double convertedTemperature;
+        if (temperatureType == 'c')
+            convertedTemperature = originalTemperature * 9/5 + 32;
+        else
+            convertedTemperature = (originalTemperature -32) * 5/9;
+        System.out.println("The converted temperature is: " + convertedTemperature + " degrees ");
+    }
+    public static void calculateFactorial() {
+        Scanner scanner = new Scanner(System.in);
+        int num;
+        int counter = 0;
+        do {
+            if (counter > 0) {
+                System.out.println("invalid number");
+            }
+            System.out.println("insert a whole non negative number:");
+            num = scanner.nextInt();
+            counter++;
+        } while (num <= 0);
+
+        int sum = 1;
+        for (int i = num; i > 0; i--) {
+            sum *= i;
+        }
+        System.out.println(num + " factorial is: " + sum);
+    }
+    public static void calculateSumOfNaturalsInRange(){
+        Scanner scanner = new Scanner(System.in);
+        int sum = 0;
+        int start;
+        int end;
+        do {
+            System.out.println("Input start of range(natural number)");
+            start = scanner.nextInt();
+        } while (start <= 0);
+        do {
+            System.out.println("Input end of range(natural number, bigger than start of range)");
+            end = scanner.nextInt();
+            if (end == start)
+                System.out.println("You cannot input 2 identical numbers");
+        } while (end == start || end <= 0);
+        if (end > start){
+            for (int i = start; i <= end; i++){
+                sum += i;
+            }
+        }
+        else{
+            for (int i = end; i <= start; i++){
+                sum += i;
+            }
+        }
+        System.out.println(sum);
+    }
+    public static void isPrime(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input a number");
+        int num = scanner.nextInt();
+        boolean isPrime = true;
+        for (int i = 2; i < num; i++){
+            if (num % i == 0){
+                isPrime =  false;
+                break;
+            }
+        }
+        if (isPrime)
+            System.out.println("Number is prime");
+        else
+            System.out.println("Number is not prime");
+    }
+    public static void isFiveDigitNumberAPalindrome(){
+        Scanner scanner = new Scanner(System.in);
+        int number = 0;
+        while (!isNumberFiveDigits(number)){
+            System.out.println("Input 5 digit number");
+            number = scanner.nextInt();
+        }
+        int reversedNumber = 0;
+        int temp = number;
+        for (int i = 10000; i >=1; i/=10){
+            reversedNumber += (temp%10) * i;
+            temp /= 10;
+        }
+        if (reversedNumber == number)
+            System.out.println("Number is a palindrome");
+        else
+            System.out.println("Number is not a palindrome");
+
+    }
+    public static boolean isNumberFiveDigits(int num){
+        int digitCount = 0;
+        do{
+            digitCount++;
+            num /=10;
+        } while (num >0);
+        return digitCount == 5;
     }
     public static void printAllPrimesInRange(){
         Scanner scanner = new Scanner(System.in);
@@ -58,11 +162,11 @@ public class Main {
         System.out.println("Input final number");
         int finalNumber = scanner.nextInt();
         for (int i = startingNumber; i <= finalNumber; i++){
-            if (isPrime(i))
+            if (returnIsPrimeValue(i))
                 System.out.println(i);
         }
     }
-    public static boolean isPrime(int num){
+    public static boolean returnIsPrimeValue(int num){
         for (int i = 2; i < num; i++){
             if (num % i == 0)
                 return false;
