@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
@@ -31,8 +32,8 @@ public class Main {
                 case 4 -> {} // calc4
                 case 5 -> {} // calc5
                 case 6 -> {} // calc6
-                case 7 -> {} // calc7
-                case 8 -> {} // calc8
+                case 7 -> printAllPrimesInRange();
+                case 8 -> checkGreatestCommonDivisor();
                 case 9 -> quadraticEquationSolver();
                 case 10 -> compoundInterest();
                 case 11 -> isPartOfFibonacciSeries();
@@ -50,7 +51,37 @@ public class Main {
         double circumference = radius*2*3.14;
         System.out.println(area + " is the area of the circle, " + circumference + " is the circumference of the circle");
     }
-
+    public static void printAllPrimesInRange(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input starting number");
+        int startingNumber = scanner.nextInt();
+        System.out.println("Input final number");
+        int finalNumber = scanner.nextInt();
+        for (int i = startingNumber; i <= finalNumber; i++){
+            if (isPrime(i))
+                System.out.println(i);
+        }
+    }
+    public static boolean isPrime(int num){
+        for (int i = 2; i < num; i++){
+            if (num % i == 0)
+                return false;
+        }
+        return true;
+    }
+    public static void checkGreatestCommonDivisor(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Input first number");
+        int num1 = scanner.nextInt();
+        System.out.println("Input second number");
+        int num2 = scanner.nextInt();
+        int GCD = 1;
+        for (int i = 2; i <= num1; i++){
+            if (num1 % i == 0 && num2 % i == 0)
+                GCD = i;
+        }
+        System.out.println("Greatest common divisor is :" + GCD);
+    }
     public static void quadraticEquationSolver(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input coefficient of x squared(a)");
@@ -87,7 +118,7 @@ public class Main {
         double interest = scanner.nextDouble()/100;
         for (int i = 3; i <= 36; i+= 3)
         {
-            balance *= (interest+1);
+            balance *= Math.pow((interest+1),3);
             double withdrawSum = i%12 == 0? balance: balance/2;
             System.out.println("sum of money to withdraw after " + i + " months is: " + withdrawSum);
             if (i %12 != 0)
